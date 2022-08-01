@@ -9,6 +9,8 @@ export default createGlobalStyle`
 		margin: 0;
 		padding: 0;
 		outline: 0;
+		color: #fff;
+		overflow: hidden;
 		box-sizing: border-box;
 	}
 
@@ -26,6 +28,7 @@ export default createGlobalStyle`
 	}
 
 	body, input, button, textarea, select {
+		color: #18191A;
 		font: 14px 'Roboto', sans-serif;
 	}
 

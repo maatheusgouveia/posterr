@@ -1,19 +1,34 @@
+import { Form as FormikForm } from 'formik';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	display: grid;
-	flex-direction: row;
-	grid-template-columns: repeat(3, 1fr);
+	height: 100vh;
+	overflow-y: auto;
+	overflow-x: hidden;
+	padding-bottom: 10%;
+`;
 
-	@media (max-width: 1100px) {
-		grid-template-columns: repeat(2, 1fr);
-	}
+export const Form = styled(FormikForm)`
+	width: 50%;
+	margin: 30px;
+	display: flex;
+	align-items: flex-end;
+	flex-direction: column;
 
-	@media (max-width: 780px) {
-		grid-template-columns: repeat(1, 1fr);
+	button {
+		color: #fff;
+		width: 100px;
+		margin-top: 5px;
+		background-color: #1d9bf0;
+		border: 1px solid #1d9bf0;
 	}
+`;
 
-	@media (max-width: 500px) {
-		grid-template-columns: repeat(1, 1fr);
-	}
+export const Textarea = styled.textarea`
+	width: 100%;
+	overflow: auto;
+`;
+
+export const CharCount = styled.p`
+	margin-top: 5px;
 `;
