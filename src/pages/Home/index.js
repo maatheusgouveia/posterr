@@ -44,7 +44,7 @@ export default function Home() {
 			</Formik>
 
 			{[1, 2, 3, 4, 5, 6].map(post => (
-				<Card key={post} />
+				<Card key={post} post_id={post} />
 			))}
 		</Container>
 	);

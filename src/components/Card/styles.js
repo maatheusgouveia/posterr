@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Form as FormikForm } from 'formik';
 
 export const Container = styled.div`
 	color: #fff;
@@ -39,3 +40,30 @@ export const PostDate = styled.p`
 export const CardBody = styled.div``;
 
 export const CardFooter = styled.div``;
+
+export const ActionArea = styled.div`
+	display: flex;
+	margin: 10px 0;
+	justify-content: flex-end;
+`;
+
+export const Form = styled(FormikForm)`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`;
+
+export const Textarea = styled.textarea`
+	width: 100%;
+	color: #fff;
+	background-color: #18191a;
+`;
+
+export const SubmitButton = styled.button`
+	width: 2.5em;
+	height: 2.5em;
+	margin-left: 10px;
+	border-radius: 50%;
+	background-color: #1d9bf0;
+	border: 1px solid #1d9bf0;
+`;

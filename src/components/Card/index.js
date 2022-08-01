@@ -1,6 +1,10 @@
+import * as Yup from 'yup';
+import { Formik } from 'formik';
 import { formatDistanceToNow } from 'date-fns';
+import { FaShareSquare, FaPaperPlane } from 'react-icons/fa';
 
 import {
+	Form,
 	CardBody,
 	CardFooter,
 	CardHeader,
@@ -9,9 +13,24 @@ import {
 	AuthorName,
 	UserContainer,
 	FollowButton,
+	ActionArea,
+	Textarea,
+	SubmitButton,
 } from './styles';
 
-export default function Card() {
+export default function Card({ post_id }) {
+	function handleSubmit(values) {
+		console.log(values);
+	}
+
+	const initialValues = {
+		[`content-${post_id}`]: '',
+	};
+
+	const validationSchema = Yup.object().shape({
+		[`content-${post_id}`]: Yup.string().required(),
+	});
+
 	return (
 		<Container>
 			<CardHeader>
@@ -33,7 +52,33 @@ export default function Card() {
 				sunt in culpa qui officia deserunt mollit anim id est laborum.
 			</CardBody>
 
-			<CardFooter></CardFooter>
+			<CardFooter>
+				<ActionArea>
+					<FaShareSquare />
+				</ActionArea>
+
+				<Formik
+					enableReinitialize
+					onSubmit={handleSubmit}
+					validateOnChange={false}
+					initialValues={initialValues}
+					validationSchema={validationSchema}
+				>
+					{({ values, errors, handleChange }) => (
+						<Form>
+							<Textarea
+								id={`content-${post_id}`}
+								onChange={handleChange}
+								placeholder="Say something cool about it"
+							/>
+
+							<SubmitButton type="submit">
+								<FaPaperPlane />
+							</SubmitButton>
+						</Form>
+					)}
+				</Formik>
+			</CardFooter>
 		</Container>
 	);
 }

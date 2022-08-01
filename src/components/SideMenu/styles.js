@@ -13,6 +13,7 @@ export const List = styled.ul`
 		font-weight: bold;
 		padding: 5px;
 		border-radius: 5px;
+		cursor: pointer;
 
 		&:hover {
 			background-color: #242526;
