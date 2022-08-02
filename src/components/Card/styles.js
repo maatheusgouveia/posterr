@@ -67,3 +67,19 @@ export const SubmitButton = styled.button`
 	background-color: #1d9bf0;
 	border: 1px solid #1d9bf0;
 `;
+
+export const ActionButton = styled.button`
+	width: 2.5em;
+	height: 2.5em;
+	background: none;
+	border-radius: 50%;
+	border: 1px solid #fff;
+
+	&:hover {
+		background-color: #18191a;
+	}
+
+	svg {
+		font-size: 1.4em;
+	}
+`;

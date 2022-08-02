@@ -16,6 +16,7 @@ import {
 	ActionArea,
 	Textarea,
 	SubmitButton,
+	ActionButton,
 } from './styles';
 
 export default function Card({ post_id }) {
@@ -54,7 +55,9 @@ export default function Card({ post_id }) {
 
 			<CardFooter>
 				<ActionArea>
-					<FaShareSquare />
+					<ActionButton>
+						<FaShareSquare />
+					</ActionButton>
 				</ActionArea>
 
 				<Formik
