@@ -1,11 +1,21 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import { useEffect, useState } from 'react';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import Card from '../../components/Card';
 
 import { Container, Textarea, Form, CharCount } from './styles';
+import { ProfileModal } from '../ProfileModal';
 
 export default function Home() {
+	const PROFILE_PAGE = 'profile';
+
+	const navigate = useNavigate();
+
+	const [page, setPage] = useState();
+	const [searchParams] = useSearchParams();
+
 	const initialValues = { content: '' };
 
 	const validationSchema = Yup.object().shape({
@@ -15,6 +25,14 @@ export default function Home() {
 	function handleSubmit(values) {
 		console.log(values);
 	}
+
+	function handleDismissProfile() {
+		navigate('/');
+	}
+
+	useEffect(() => {
+		setPage(searchParams.get('page'));
+	}, [searchParams]);
 
 	return (
 		<Container>
@@ -46,6 +64,11 @@ export default function Home() {
 			{[1, 2, 3, 4, 5, 6].map(post => (
 				<Card key={post} post_id={post} />
 			))}
+
+			<ProfileModal
+				visible={page === PROFILE_PAGE}
+				onDismiss={handleDismissProfile}
+			/>
 		</Container>
 	);
 }

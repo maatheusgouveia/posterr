@@ -1,17 +1,24 @@
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 import { Container, List } from './styles';
 
 export default function SideMenu() {
+	const navigate = useNavigate();
+
+	const { username } = useSelector(state => state.user.profile);
+	const { signed } = useSelector(state => state.auth);
+
 	function handleProfile() {
-		console.log('profile');
+		navigate(`?page=profile&username=${username}`);
 	}
 
 	return (
 		<Container>
 			<List>
-				<li onClick={handleProfile}>Matheus Gouveia</li>
-				<li>My Profile</li>
+				{signed && <li onClick={handleProfile}>Matheus Gouveia</li>}
+				<li>Following</li>
 				<li>Followers</li>
-				<li>My posts</li>
 			</List>
 		</Container>
 	);

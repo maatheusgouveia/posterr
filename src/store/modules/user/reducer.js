@@ -1,7 +1,11 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-	profile: {},
+	profile: {
+		id: 'b4dce57f-20f9-4c16-9811-332a587b7a6a',
+		name: 'Matheus Gouveia',
+		username: 'maatheusgouveia',
+	},
 };
 
 export default function user(state = INITIAL_STATE, action) {
