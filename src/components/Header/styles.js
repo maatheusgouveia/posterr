@@ -50,3 +50,18 @@ export const LogoContainer = styled.div`
 		margin-left: 10px;
 	}
 `;
+
+export const ToggleFeed = styled.div`
+	display: flex;
+	justify-content: space-around;
+	margin-left: 50px;
+	border-radius: 5px;
+	/* border: 1px solid #fff; */
+	width: 200px;
+`;
+
+export const ToggleFeedButton = styled.button`
+	border: none;
+	background: ${({ selected }) => (selected ? '#18191A' : 'none')};
+	width: 50%;
+`;
