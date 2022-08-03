@@ -2,16 +2,22 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Card from '../../components/Card';
+import { ProfileModal } from '../ProfileModal';
+import { getPostsRequest } from '../../store/modules/feed/actions';
 
 import { Container, Textarea, Form, CharCount } from './styles';
-import { ProfileModal } from '../ProfileModal';
+import { createPostRequest } from '../../store/modules/post/actions';
 
 export default function Home() {
+	const FOLLOWING = 'FOLLOWING';
 	const PROFILE_PAGE = 'profile';
 
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
+	const { chronological, following } = useSelector(state => state.feed);
 
 	const [page, setPage] = useState();
 	const [searchParams] = useSearchParams();
@@ -22,8 +28,9 @@ export default function Home() {
 		content: Yup.string().max(777).required(),
 	});
 
-	function handleSubmit(values) {
-		console.log(values);
+	function handleSubmit(values, { resetForm }) {
+		dispatch(createPostRequest(values));
+		resetForm();
 	}
 
 	function handleDismissProfile() {
@@ -31,8 +38,19 @@ export default function Home() {
 	}
 
 	useEffect(() => {
-		setPage(searchParams.get('page'));
+		const page = searchParams.get('page');
+
+		if (page) {
+			setPage(page);
+		}
 	}, [searchParams]);
+
+	useEffect(() => {
+		dispatch(getPostsRequest());
+	}, []);
+
+	const feed =
+		searchParams.get('feed') === FOLLOWING ? following : chronological;
 
 	return (
 		<Container>
@@ -42,7 +60,7 @@ export default function Home() {
 				initialValues={initialValues}
 				validationSchema={validationSchema}
 			>
-				{({ values, errors, handleChange }) => (
+				{({ values, handleChange }) => (
 					<Form>
 						<Textarea
 							rows={4}
@@ -61,8 +79,8 @@ export default function Home() {
 				)}
 			</Formik>
 
-			{[1, 2, 3, 4, 5, 6].map(post => (
-				<Card key={post} post_id={post} />
+			{feed?.map(post => (
+				<Card key={post.id} post={post} />
 			))}
 
 			<ProfileModal

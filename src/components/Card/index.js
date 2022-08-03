@@ -19,39 +19,33 @@ import {
 	ActionButton,
 } from './styles';
 
-export default function Card({ post_id }) {
+export default function Card({ post }) {
 	function handleSubmit(values) {
 		console.log(values);
 	}
 
 	const initialValues = {
-		[`content-${post_id}`]: '',
+		[`content-${post.id}`]: '',
 	};
 
 	const validationSchema = Yup.object().shape({
-		[`content-${post_id}`]: Yup.string().required(),
+		[`content-${post.id}`]: Yup.string().required(),
 	});
+
+	const { content, author, created_at } = post;
 
 	return (
 		<Container>
 			<CardHeader>
 				<UserContainer>
-					<AuthorName>Matheus Gouveia</AuthorName>
+					<AuthorName>{author}</AuthorName>
 					<FollowButton>follow</FollowButton>
 				</UserContainer>
 
-				<PostDate>{formatDistanceToNow(new Date())}</PostDate>
+				<PostDate>{formatDistanceToNow(new Date(created_at))}</PostDate>
 			</CardHeader>
 
-			<CardBody>
-				Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-				eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-				enim ad minim veniam, quis nostrud exercitation ullamco laboris
-				nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-				in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-				nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-				sunt in culpa qui officia deserunt mollit anim id est laborum.
-			</CardBody>
+			<CardBody>{content}</CardBody>
 
 			<CardFooter>
 				<ActionArea>
@@ -70,7 +64,7 @@ export default function Card({ post_id }) {
 					{({ values, errors, handleChange }) => (
 						<Form>
 							<Textarea
-								id={`content-${post_id}`}
+								id={`content-${post.id}`}
 								onChange={handleChange}
 								placeholder="Say something cool about it"
 							/>
