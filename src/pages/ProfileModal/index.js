@@ -54,7 +54,7 @@ export function ProfileModal({ visible, onDismiss = () => {} }) {
 				</Profile>
 
 				{feed.map(post => (
-					<Card key={post.id} post={post} />
+					<Card key={post.id} post={post} width={500} />
 				))}
 			</ModalBody>
 		</Modal>

@@ -28,7 +28,7 @@ import {
 	ToggleCommentsContainer,
 } from './styles';
 
-export default function Card({ post }) {
+export default function Card({ post, width }) {
 	const dispatch = useDispatch();
 	const field_name = `content-${post.id}`;
 
@@ -94,7 +94,7 @@ export default function Card({ post }) {
 	}
 
 	return (
-		<Container>
+		<Container width={width}>
 			<CardHeader>
 				<UserContainer>
 					<AuthorName>{author}</AuthorName>

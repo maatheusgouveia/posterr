@@ -5,8 +5,8 @@ export const Container = styled.div`
 	color: #fff;
 	margin: 30px;
 	padding: 15px;
-	max-width: 50%;
-	min-width: 500px;
+	max-width: ${({ width }) => (width ? `${width}px` : '50%')};
+	min-width: ${({ width }) => (width ? `${width}px` : '500px')};
 	border-radius: 5px;
 	background-color: #242526;
 `;
