@@ -29,11 +29,16 @@ export default function feed(state = INITIAL_STATE, action) {
 						return 0;
 					}
 				);
+
 				draft.chronological = ordered_by_creation_date;
-				draft.following = ordered_by_creation_date;
 
 				draft.loading = false;
 				draft.error = false;
+				break;
+			}
+			case '@feed/SET_FOLLOWING_POSTS': {
+				draft.following = action.payload.data;
+
 				break;
 			}
 			case '@feed/APPEND_TO_FEED': {

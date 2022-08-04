@@ -24,3 +24,10 @@ export function appendToFeed(data) {
 		payload: { data },
 	};
 }
+
+export function setFollowingPosts(data) {
+	return {
+		type: '@feed/SET_FOLLOWING_POSTS',
+		payload: { data },
+	};
+}
