@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { formatDistanceToNow } from 'date-fns';
 import { FaShareSquare, FaPaperPlane } from 'react-icons/fa';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
 	Form,
@@ -18,18 +19,28 @@ import {
 	SubmitButton,
 	ActionButton,
 } from './styles';
+import { createCommentRequest } from '../../store/modules/comment/actions';
 
 export default function Card({ post }) {
-	function handleSubmit(values) {
-		console.log(values);
+	const dispatch = useDispatch();
+	const field_name = `content-${post.id}`;
+
+	function handleSubmit(values, { resetForm }) {
+		const data = {
+			post_id: post.id,
+			content: values[field_name],
+		};
+
+		dispatch(createCommentRequest(data));
+		resetForm();
 	}
 
 	const initialValues = {
-		[`content-${post.id}`]: '',
+		[field_name]: '',
 	};
 
 	const validationSchema = Yup.object().shape({
-		[`content-${post.id}`]: Yup.string().required(),
+		[field_name]: Yup.string().required(),
 	});
 
 	const { content, author, created_at } = post;
@@ -67,6 +78,7 @@ export default function Card({ post }) {
 								id={`content-${post.id}`}
 								onChange={handleChange}
 								placeholder="Say something cool about it"
+								value={values[field_name]}
 							/>
 
 							<SubmitButton type="submit">

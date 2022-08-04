@@ -7,9 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import Card from '../../components/Card';
 import { ProfileModal } from '../ProfileModal';
 import { getPostsRequest } from '../../store/modules/feed/actions';
+import { createPostRequest } from '../../store/modules/post/actions';
+import { getCommentsRequest } from '../../store/modules/comment/actions';
 
 import { Container, Textarea, Form, CharCount } from './styles';
-import { createPostRequest } from '../../store/modules/post/actions';
 
 export default function Home() {
 	const FOLLOWING = 'FOLLOWING';
@@ -40,13 +41,12 @@ export default function Home() {
 	useEffect(() => {
 		const page = searchParams.get('page');
 
-		if (page) {
-			setPage(page);
-		}
+		setPage(page);
 	}, [searchParams]);
 
 	useEffect(() => {
 		dispatch(getPostsRequest());
+		dispatch(getCommentsRequest());
 	}, []);
 
 	const feed =

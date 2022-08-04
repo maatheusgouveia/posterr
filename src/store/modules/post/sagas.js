@@ -21,7 +21,7 @@ export function* createPost({ payload }) {
 		yield put(createPostSuccess(response.data));
 		yield put(appendToFeed(response.data));
 	} catch (err) {
-		toast.error('Unexpected error 🤔');
+		toast.error('Unexpected error 🤔', { type: 'error' });
 		yield put(createPostFailure());
 	}
 }

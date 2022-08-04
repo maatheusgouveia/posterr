@@ -11,7 +11,7 @@ export function* getPosts() {
 
 		yield put(getPostsSuccess(response.data));
 	} catch (err) {
-		toast.error('Unexpected error 🤔');
+		toast.error('Unexpected error 🤔', { type: 'error' });
 		yield put(getPostsFailure());
 	}
 }
