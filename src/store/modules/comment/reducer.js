@@ -30,6 +30,8 @@ export default function comment(state = INITIAL_STATE, action) {
 					];
 				});
 
+				draft.threads = temp;
+
 				draft.loading = false;
 				draft.error = false;
 				break;

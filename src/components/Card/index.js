@@ -1,8 +1,13 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
+import { useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { FaShareSquare, FaPaperPlane } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { createCommentRequest } from '../../store/modules/comment/actions';
+
+import Comment from '../Comment';
 
 import {
 	Form,
@@ -18,12 +23,20 @@ import {
 	Textarea,
 	SubmitButton,
 	ActionButton,
+	Comments,
+	ToggleCommentsButton,
+	ToggleCommentsContainer,
 } from './styles';
-import { createCommentRequest } from '../../store/modules/comment/actions';
 
 export default function Card({ post }) {
 	const dispatch = useDispatch();
 	const field_name = `content-${post.id}`;
+
+	const { threads } = useSelector(state => state.comment);
+
+	const [commentsVisible, setCommentsVisible] = useState(false);
+
+	const comments = threads[post.id] || [];
 
 	function handleSubmit(values, { resetForm }) {
 		const data = {
@@ -45,6 +58,41 @@ export default function Card({ post }) {
 
 	const { content, author, created_at } = post;
 
+	function handleCommentsVisibility(value) {
+		setCommentsVisible(value);
+	}
+
+	function renderComments(visible) {
+		if (!comments.length) return null;
+
+		if (!visible)
+			return (
+				<ToggleCommentsContainer>
+					<ToggleCommentsButton
+						onClick={() => handleCommentsVisibility(true)}
+					>
+						show comments
+					</ToggleCommentsButton>
+				</ToggleCommentsContainer>
+			);
+
+		const commentsList = comments.map(comment => (
+			<Comment key={comment.id} comment={comment} />
+		));
+
+		commentsList.push(
+			<ToggleCommentsContainer>
+				<ToggleCommentsButton
+					onClick={() => handleCommentsVisibility(false)}
+				>
+					hide comments
+				</ToggleCommentsButton>
+			</ToggleCommentsContainer>
+		);
+
+		return commentsList;
+	}
+
 	return (
 		<Container>
 			<CardHeader>
@@ -53,7 +101,11 @@ export default function Card({ post }) {
 					<FollowButton>follow</FollowButton>
 				</UserContainer>
 
-				<PostDate>{formatDistanceToNow(new Date(created_at))}</PostDate>
+				<PostDate>
+					{formatDistanceToNow(new Date(created_at), {
+						addSuffix: true,
+					})}
+				</PostDate>
 			</CardHeader>
 
 			<CardBody>{content}</CardBody>
@@ -72,7 +124,7 @@ export default function Card({ post }) {
 					initialValues={initialValues}
 					validationSchema={validationSchema}
 				>
-					{({ values, errors, handleChange }) => (
+					{({ values, handleChange }) => (
 						<Form>
 							<Textarea
 								id={`content-${post.id}`}
@@ -87,6 +139,8 @@ export default function Card({ post }) {
 						</Form>
 					)}
 				</Formik>
+
+				<Comments>{renderComments(commentsVisible)}</Comments>
 			</CardFooter>
 		</Container>
 	);

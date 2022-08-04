@@ -84,3 +84,18 @@ export const ActionButton = styled.button`
 		font-size: 1.4em;
 	}
 `;
+
+export const Comments = styled.div``;
+
+export const ToggleCommentsContainer = styled.div`
+	display: flex;
+	margin-top: 20px;
+	justify-content: center;
+`;
+
+export const ToggleCommentsButton = styled.button`
+	border: none;
+	background: none;
+	color: #fff;
+	text-decoration: underline;
+`;
