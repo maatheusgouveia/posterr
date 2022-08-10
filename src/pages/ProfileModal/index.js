@@ -1,6 +1,5 @@
 import Modal from 'react-modal';
 import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
 
 import Card from '../../components/Card';
 import avatar from '../../assets/avatar.jpg';
@@ -17,15 +16,8 @@ import {
 } from './styles';
 
 export function ProfileModal({ visible, onDismiss = () => {} }) {
-	const FOLLOWING = 'FOLLOWING';
-
 	const { name, username } = useSelector(state => state.user.profile);
-	const { chronological, following } = useSelector(state => state.feed);
-
-	const [searchParams] = useSearchParams();
-
-	const feed =
-		searchParams.get('feed') === FOLLOWING ? following : chronological;
+	const { logged_user_is_author } = useSelector(state => state.feed);
 
 	return (
 		<Modal
@@ -53,7 +45,7 @@ export function ProfileModal({ visible, onDismiss = () => {} }) {
 					</AboutSection>
 				</Profile>
 
-				{feed.map(post => (
+				{logged_user_is_author?.map(post => (
 					<Card key={post.id} post={post} width={500} />
 				))}
 			</ModalBody>

@@ -31,3 +31,10 @@ export function setFollowingPosts(data) {
 		payload: { data },
 	};
 }
+
+export function setCurrentUserPosts(data) {
+	return {
+		type: '@feed/SET_LOGGED_USER_POSTS',
+		payload: { data },
+	};
+}

@@ -1,39 +1,53 @@
 {
-	"users": [
-		{
-			"id": 1,
-			"name": "Matheus Gouveia",
-			"username": "maatheusgouveia"
-		},
-		{
-			"id": 2,
-			"name": "John Doe",
-			"username": "johndoe"
-		}
-	],
-	"posts": [
-		{
-			"id": 1,
-			"content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-			"author": "John Doe",
-			"created_at": "07-07-2022 00:00:00"
-		},
-		{
-			"content": "new Post",
-			"author": "Matheus Gouveia",
-			"created_at": "2022-08-03T04:18:38.387Z",
-			"id": 6
-		}
-	],
-	"comments": [],
-	"following": [
-		{
-			"user_id": "Matheus Gouveia",
-			"following": "John Doe"
-		},
-		{
-			"user_id": "John Doe",
-			"following": "Matheus Gouveia"
-		}
-	]
+  "users": [
+    {
+      "id": 1,
+      "name": "Matheus Gouveia",
+      "username": "maatheusgouveia"
+    },
+    {
+      "id": 2,
+      "name": "John Doe",
+      "username": "johndoe"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "author": "John Doe",
+      "created_at": "07-07-2022 00:00:00"
+    },
+    {
+      "content": "new Post",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-03T04:18:38.387Z",
+      "id": 6
+    },
+    {
+      "content": "opa\n",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-04T19:10:36.211Z",
+      "id": 7
+    }
+  ],
+  "comments": [
+    {
+      "post_id": 7,
+      "content": "opa",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-04T19:10:42.947Z",
+      "id": 1
+    }
+  ],
+  "following": [
+    {
+      "user_id": "Matheus Gouveia",
+      "following": "John Doe"
+    },
+    {
+      "user_id": "John Doe",
+      "following": "Matheus Gouveia"
+    }
+  ]
 }

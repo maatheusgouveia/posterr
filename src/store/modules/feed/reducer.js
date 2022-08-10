@@ -1,7 +1,8 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-	user_is_author: [],
+	logged_user_is_author: [],
+	posts_by_user: [],
 	chronological: [],
 	following: [],
 	loading: false,
@@ -38,6 +39,12 @@ export default function feed(state = INITIAL_STATE, action) {
 			}
 			case '@feed/SET_FOLLOWING_POSTS': {
 				draft.following = action.payload.data;
+
+				break;
+			}
+
+			case '@feed/SET_LOGGED_USER_POSTS': {
+				draft.logged_user_is_author = action.payload.data;
 
 				break;
 			}
