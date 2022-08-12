@@ -21,6 +21,10 @@ export default function follow(state = INITIAL_STATE, action) {
 				break;
 			}
 			case '@follow/ADD_FOLLOW_SUCCESS': {
+				draft.following_list = [
+					action.payload.data,
+					...draft.following_list,
+				];
 				draft.loading = false;
 				draft.error = false;
 				break;
@@ -36,6 +40,9 @@ export default function follow(state = INITIAL_STATE, action) {
 				break;
 			}
 			case '@follow/REMOVE_FOLLOW_SUCCESS': {
+				draft.following_list = draft.following_list.filter(
+					follow => follow !== action.payload.data
+				);
 				draft.loading = false;
 				draft.error = false;
 				break;
@@ -51,7 +58,6 @@ export default function follow(state = INITIAL_STATE, action) {
 				break;
 			}
 			case '@follow/GET_FOLLOWING_LIST_SUCCESS': {
-				console.log('GET_FOLLOWING_LIST_SUCCESS', action.payload.data);
 				draft.following_list = action.payload.data;
 				draft.loading = false;
 				draft.error = false;
@@ -68,7 +74,6 @@ export default function follow(state = INITIAL_STATE, action) {
 				break;
 			}
 			case '@follow/GET_FOLLOWERS_LIST_SUCCESS': {
-				console.log('GET_FOLLOWERS_LIST_SUCCESS', action.payload.data);
 				draft.followers_list = action.payload.data;
 				draft.loading = false;
 				draft.error = false;

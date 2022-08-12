@@ -1,7 +1,14 @@
-export function addFollowRequest(data) {
+export function toggleFollowRequest(follow_user_id) {
+	return {
+		type: '@follow/TOGGLE_FOLLOW_REQUEST',
+		payload: { follow_user_id },
+	};
+}
+
+export function addFollowRequest({ user_id, follow_user_id }) {
 	return {
 		type: '@follow/ADD_FOLLOW_REQUEST',
-		payload: { data },
+		payload: { user_id, follow_user_id },
 	};
 }
 
@@ -18,10 +25,10 @@ export function addFollowFailure() {
 	};
 }
 
-export function removeFollowRequest(data) {
+export function removeFollowRequest({ user_id, follow_user_id }) {
 	return {
 		type: '@follow/REMOVE_FOLLOW_REQUEST',
-		payload: { data },
+		payload: { user_id, follow_user_id },
 	};
 }
 

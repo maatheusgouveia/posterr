@@ -50,10 +50,11 @@ export default function Home() {
 	}, [searchParams]);
 
 	useEffect(() => {
-		dispatch(getPostsRequest());
-		dispatch(getCommentsRequest());
 		dispatch(getFollowersListRequest());
 		dispatch(getFollowingListRequest());
+
+		dispatch(getPostsRequest());
+		dispatch(getCommentsRequest());
 	}, []);
 
 	const feed =

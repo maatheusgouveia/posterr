@@ -1,10 +1,11 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { FaShareSquare, FaPaperPlane } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { toggleFollowRequest } from '../../store/modules/follow/actions';
 import { createCommentRequest } from '../../store/modules/comment/actions';
 
 import Comment from '../Comment';
@@ -33,6 +34,8 @@ export default function Card({ post, width }) {
 	const field_name = `content-${post.id}`;
 
 	const { threads } = useSelector(state => state.comment);
+	const { name: user_name } = useSelector(state => state.user.profile);
+	const { following_list } = useSelector(state => state.follow);
 
 	const [commentsVisible, setCommentsVisible] = useState(false);
 
@@ -93,12 +96,25 @@ export default function Card({ post, width }) {
 		return commentsList;
 	}
 
+	function handleFollow() {
+		dispatch(toggleFollowRequest(author));
+	}
+
+	const is_following = useMemo(
+		() => following_list.some(name => name === author),
+		[following_list, author]
+	);
+
 	return (
 		<Container width={width}>
 			<CardHeader>
 				<UserContainer>
 					<AuthorName>{author}</AuthorName>
-					<FollowButton>follow</FollowButton>
+					{author !== user_name && (
+						<FollowButton onClick={handleFollow}>
+							{is_following ? 'unfollow' : 'follow'}
+						</FollowButton>
+					)}
 				</UserContainer>
 
 				<PostDate>

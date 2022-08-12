@@ -25,12 +25,9 @@ export function* filterFollowingPosts() {
 	try {
 		const state = yield select();
 
-		const { name } = state.user.profile;
 		const { chronological } = state.feed;
 
-		const response = yield call(api.get, `following?user_id=${name}`);
-
-		const following_list = response.data.map(follow => follow.following);
+		const { following_list } = state.follow;
 
 		const following_posts = chronological.filter(post =>
 			following_list.includes(post.author)
@@ -63,4 +60,7 @@ export default all([
 	takeLatest('@feed/GET_POSTS_REQUEST', getPosts),
 	takeLatest('@feed/GET_POSTS_SUCCESS', filterFollowingPosts),
 	takeLatest('@feed/GET_POSTS_SUCCESS', filterCurrentUsersPosts),
+	takeLatest('@follow/GET_FOLLOWING_LIST_REQUEST', filterFollowingPosts),
+	takeLatest('@follow/REMOVE_FOLLOW_SUCCESS', filterFollowingPosts),
+	takeLatest('@follow/ADD_FOLLOW_SUCCESS', filterFollowingPosts),
 ]);
