@@ -6,6 +6,8 @@ const INITIAL_STATE = {
 		name: 'Matheus Gouveia',
 		username: 'maatheusgouveia',
 	},
+	following_list: [],
+	following_count: 0,
 };
 
 export default function user(state = INITIAL_STATE, action) {

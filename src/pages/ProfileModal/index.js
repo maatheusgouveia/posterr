@@ -18,6 +18,7 @@ import {
 export function ProfileModal({ visible, onDismiss = () => {} }) {
 	const { name, username } = useSelector(state => state.user.profile);
 	const { logged_user_is_author } = useSelector(state => state.feed);
+	const { profile } = useSelector(state => state.user);
 
 	return (
 		<Modal

@@ -5,6 +5,7 @@ import user from './user/reducer';
 import feed from './feed/reducer';
 import post from './post/reducer';
 import comment from './comment/reducer';
+import follow from './follow/reducer';
 
 export default combineReducers({
 	auth,
@@ -12,4 +13,5 @@ export default combineReducers({
 	feed,
 	post,
 	comment,
+	follow,
 });

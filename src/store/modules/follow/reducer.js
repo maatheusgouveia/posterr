@@ -1,7 +1,8 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-	list: [],
+	following_list: [],
+	followers_list: [],
 	loading: false,
 	error: false,
 };
@@ -20,8 +21,55 @@ export default function follow(state = INITIAL_STATE, action) {
 				break;
 			}
 			case '@follow/ADD_FOLLOW_SUCCESS': {
-				draft.list = action.payload.data;
-
+				draft.loading = false;
+				draft.error = false;
+				break;
+			}
+			case '@follow/REMOVE_FOLLOW_REQUEST': {
+				draft.loading = true;
+				draft.error = false;
+				break;
+			}
+			case '@follow/REMOVE_FOLLOW_FAILURE': {
+				draft.loading = false;
+				draft.error = true;
+				break;
+			}
+			case '@follow/REMOVE_FOLLOW_SUCCESS': {
+				draft.loading = false;
+				draft.error = false;
+				break;
+			}
+			case '@follow/GET_FOLLOWING_LIST_REQUEST': {
+				draft.loading = true;
+				draft.error = false;
+				break;
+			}
+			case '@follow/GET_FOLLOWING_LIST_FAILURE': {
+				draft.loading = false;
+				draft.error = true;
+				break;
+			}
+			case '@follow/GET_FOLLOWING_LIST_SUCCESS': {
+				console.log('GET_FOLLOWING_LIST_SUCCESS', action.payload.data);
+				draft.following_list = action.payload.data;
+				draft.loading = false;
+				draft.error = false;
+				break;
+			}
+			case '@follow/GET_FOLLOWERS_LIST_REQUEST': {
+				draft.loading = true;
+				draft.error = false;
+				break;
+			}
+			case '@follow/GET_FOLLOWERS_LIST_FAILURE': {
+				draft.loading = false;
+				draft.error = true;
+				break;
+			}
+			case '@follow/GET_FOLLOWERS_LIST_SUCCESS': {
+				console.log('GET_FOLLOWERS_LIST_SUCCESS', action.payload.data);
+				draft.followers_list = action.payload.data;
 				draft.loading = false;
 				draft.error = false;
 				break;

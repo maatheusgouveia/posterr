@@ -5,10 +5,15 @@ import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Card from '../../components/Card';
-import { ProfileModal } from '../ProfileModal';
 import { getPostsRequest } from '../../store/modules/feed/actions';
 import { createPostRequest } from '../../store/modules/post/actions';
 import { getCommentsRequest } from '../../store/modules/comment/actions';
+import {
+	getFollowersListRequest,
+	getFollowingListRequest,
+} from '../../store/modules/follow/actions';
+
+import { ProfileModal } from '../ProfileModal';
 
 import { Container, Textarea, Form, CharCount } from './styles';
 
@@ -47,6 +52,8 @@ export default function Home() {
 	useEffect(() => {
 		dispatch(getPostsRequest());
 		dispatch(getCommentsRequest());
+		dispatch(getFollowersListRequest());
+		dispatch(getFollowingListRequest());
 	}, []);
 
 	const feed =

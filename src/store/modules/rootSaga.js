@@ -5,7 +5,8 @@ import user from './user/sagas';
 import feed from './feed/sagas';
 import post from './post/sagas';
 import comment from './comment/sagas';
+import follow from './follow/sagas';
 
 export default function* rootSaga() {
-	return yield all([auth, user, feed, post, comment]);
+	return yield all([auth, user, feed, post, comment, follow]);
 }

@@ -1,29 +1,46 @@
 import { toast } from 'react-toastify';
-import { takeLatest, call, put, all } from 'redux-saga/effects';
+import { takeLatest, call, put, all, select } from 'redux-saga/effects';
 
 import api from '../../../services/api';
-import { appendToFeed } from '../feed/actions';
 
-import { createPostSuccess, createPostFailure } from './actions';
+import {
+	getFollowersListSuccess,
+	getFollowersListFailure,
+	getFollowingListSuccess,
+	getFollowingListFailure,
+} from './actions';
 
-export function* createPost({ payload }) {
-	const { content } = payload.data;
+export function* getFollowersList({ payload }) {
+	const state = yield select();
+	const { profile } = state.user;
+	const { user_id = profile.name } = payload;
 
 	try {
-		const data = {
-			content,
-			author: 'Matheus Gouveia',
-			created_at: new Date().toISOString(),
-		};
+		const response = yield call(api.get, `following?following=${user_id}`);
 
-		const response = yield call(api.post, 'posts', data);
-
-		yield put(createPostSuccess(response.data));
-		yield put(appendToFeed(response.data));
+		yield put(getFollowersListSuccess(response.data));
 	} catch (err) {
-		toast.error('Unexpected error 🤔', { type: 'error' });
-		yield put(createPostFailure());
+		toast.error('Unexpected error 🤔');
+		yield put(getFollowersListFailure());
 	}
 }
 
-export default all([takeLatest('@post/CREATE_POST_REQUEST', createPost)]);
+export function* getFollowingList({ payload }) {
+	const state = yield select();
+	const { profile } = state.user;
+	const { user_id = profile.name } = payload;
+
+	try {
+		const response = yield call(api.get, `following?user_id=${user_id}`);
+
+		yield put(getFollowingListSuccess(response.data));
+	} catch (err) {
+		toast.error('Unexpected error 🤔');
+		yield put(getFollowingListFailure());
+	}
+}
+
+export default all([
+	takeLatest('@follow/GET_FOLLOWERS_LIST_REQUEST', getFollowersList),
+	takeLatest('@follow/GET_FOLLOWING_LIST_REQUEST', getFollowingList),
+]);
