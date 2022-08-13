@@ -54,12 +54,10 @@ export function* toggleFollow({ payload }) {
 	const state = yield select();
 
 	const { follow_user_id } = payload;
-	const { name: user_id } = state.user.profile;
 	const { following_list } = state.follow;
+	const { name: user_id } = state.user.profile;
 
 	const user_is_following = following_list.some(id => id === follow_user_id);
-
-	console.log('toggleFollow');
 
 	if (user_is_following) {
 		yield put(removeFollowRequest({ user_id, follow_user_id }));
@@ -89,7 +87,6 @@ export function* addFollow({ payload }) {
 
 export function* removeFollow({ payload }) {
 	const { user_id, follow_user_id } = payload;
-	console.log('removeFollow');
 
 	try {
 		const response = yield call(

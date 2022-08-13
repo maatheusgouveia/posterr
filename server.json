@@ -9,6 +9,16 @@
       "id": 2,
       "name": "John Doe",
       "username": "johndoe"
+    },
+    {
+      "id": 3,
+      "name": "Fatima Voestaa",
+      "username": "fatimavoestaa"
+    },
+    {
+      "id": 4,
+      "name": "Glaphyra Maiken",
+      "username": "glaphyramaiken"
     }
   ],
   "posts": [
@@ -16,7 +26,19 @@
       "id": 1,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       "author": "John Doe",
-      "created_at": "07-07-2022 00:00:00"
+      "created_at": "2022-08-12T04:18:38.387Z"
+    },
+    {
+      "id": 2,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "author": "Fatima Voestaa",
+      "created_at": "2022-07-19T04:18:38.387Z"
+    },
+    {
+      "id": 3,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "author": "Glaphyra Maiken",
+      "created_at": "2022-08-12T04:18:38.387Z"
     },
     {
       "content": "new Post",
@@ -29,6 +51,30 @@
       "author": "Matheus Gouveia",
       "created_at": "2022-08-04T19:10:36.211Z",
       "id": 7
+    },
+    {
+      "id": 8,
+      "author": "Matheus Gouveia",
+      "content": "",
+      "created_at": "2022-08-12T04:22:33.387Z",
+      "original_post": {
+        "id": 1,
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "author": "John Doe",
+        "created_at": "2022-08-12T04:18:38.387Z"
+      }
+    },
+    {
+      "id": 9,
+      "author": "Matheus Gouveia",
+      "content": "I totally agree",
+      "created_at": "2022-08-12T04:23:38.387Z",
+      "original_post": {
+        "id": 1,
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "author": "John Doe",
+        "created_at": "2022-08-12T04:18:38.387Z"
+      }
     }
   ],
   "comments": [
@@ -44,8 +90,20 @@
     {
       "user_id": "Matheus Gouveia",
       "following": "John Doe",
-      "created_at": "2022-08-12T19:00:43.507Z",
+      "created_at": "2022-08-13T03:09:59.438Z",
       "id": 1
+    },
+    {
+      "user_id": "Matheus Gouveia",
+      "following": "Glaphyra Maiken",
+      "created_at": "2022-08-13T03:20:12.160Z",
+      "id": 2
+    },
+    {
+      "user_id": "Matheus Gouveia",
+      "following": "Fatima Voestaa",
+      "created_at": "2022-08-13T03:20:17.094Z",
+      "id": 3
     }
   ]
 }

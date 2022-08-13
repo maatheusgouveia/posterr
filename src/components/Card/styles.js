@@ -20,6 +20,7 @@ export const FollowButton = styled.button`
 	border: none;
 	background: none;
 	color: #fff;
+	margin-bottom: 3px;
 
 	&:hover {
 		font-weight: bold;
@@ -28,6 +29,7 @@ export const FollowButton = styled.button`
 
 export const AuthorName = styled.p`
 	font-weight: bold;
+	margin-bottom: 3px;
 `;
 
 export const CardHeader = styled.div`
@@ -36,9 +38,17 @@ export const CardHeader = styled.div`
 
 export const PostDate = styled.p`
 	font-size: 0.8em;
+	margin-bottom: 3px;
 `;
 
 export const CardBody = styled.div``;
+
+export const RepostArea = styled.div`
+	margin-top: 10px;
+	border: 1px solid #fff;
+	border-radius: 4px;
+	padding: 10px;
+`;
 
 export const CardFooter = styled.div``;
 

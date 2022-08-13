@@ -27,6 +27,7 @@ import {
 	Comments,
 	ToggleCommentsButton,
 	ToggleCommentsContainer,
+	RepostArea,
 } from './styles';
 
 export default function Card({ post, width }) {
@@ -59,7 +60,13 @@ export default function Card({ post, width }) {
 		[field_name]: Yup.string().required(),
 	});
 
-	const { content, author, created_at } = post;
+	const { content, author, created_at, original_post = {} } = post;
+
+	const {
+		content: original_post_content,
+		author: original_post_author,
+		created_at: original_post_created_at,
+	} = original_post;
 
 	function handleCommentsVisibility(value) {
 		setCommentsVisible(value);
@@ -96,22 +103,46 @@ export default function Card({ post, width }) {
 		return commentsList;
 	}
 
-	function handleFollow() {
-		dispatch(toggleFollowRequest(author));
+	function handleFollow(author_id) {
+		dispatch(toggleFollowRequest(author_id));
 	}
 
+	function handleShare() {}
+
+	const is_repost = !!original_post?.id;
+
+	const has_comment = is_repost && content;
+
+	let main_content = content;
+
+	if (is_repost && has_comment) {
+		main_content = content;
+	}
+
+	if (is_repost && !has_comment) {
+		main_content = original_post_content;
+	}
+
+	const original_author =
+		is_repost && !has_comment ? original_post_author : author;
+
 	const is_following = useMemo(
-		() => following_list.some(name => name === author),
-		[following_list, author]
+		() => following_list.some(name => name === original_author),
+		[following_list, original_author]
 	);
 
 	return (
 		<Container width={width}>
 			<CardHeader>
+				{is_repost && !has_comment && <p>reposted by {author}</p>}
+
 				<UserContainer>
-					<AuthorName>{author}</AuthorName>
-					{author !== user_name && (
-						<FollowButton onClick={handleFollow}>
+					<AuthorName>{original_author}</AuthorName>
+
+					{original_author !== user_name && (
+						<FollowButton
+							onClick={() => handleFollow(original_author)}
+						>
 							{is_following ? 'unfollow' : 'follow'}
 						</FollowButton>
 					)}
@@ -124,11 +155,40 @@ export default function Card({ post, width }) {
 				</PostDate>
 			</CardHeader>
 
-			<CardBody>{content}</CardBody>
+			<CardBody>{main_content}</CardBody>
+
+			{is_repost && has_comment && (
+				<RepostArea>
+					<UserContainer>
+						<AuthorName>{original_post_author}</AuthorName>
+
+						{original_post_author !== user_name && (
+							<FollowButton
+								onClick={() =>
+									handleFollow(original_post_author)
+								}
+							>
+								{is_following ? 'unfollow' : 'follow'}
+							</FollowButton>
+						)}
+					</UserContainer>
+
+					<PostDate>
+						{formatDistanceToNow(
+							new Date(original_post_created_at),
+							{
+								addSuffix: true,
+							}
+						)}
+					</PostDate>
+
+					<CardBody>{original_post_content}</CardBody>
+				</RepostArea>
+			)}
 
 			<CardFooter>
 				<ActionArea>
-					<ActionButton>
+					<ActionButton onClick={handleShare}>
 						<FaShareSquare />
 					</ActionButton>
 				</ActionArea>
