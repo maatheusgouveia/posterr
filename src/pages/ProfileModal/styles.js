@@ -28,6 +28,12 @@ export const ModalBody = styled.div`
 export const Profile = styled.div`
 	display: flex;
 	justify-content: flex-start;
+
+	@media (max-width: 780px) {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 `;
 
 export const Avatar = styled.img`
@@ -35,6 +41,10 @@ export const Avatar = styled.img`
 	height: 150px;
 	border-radius: 50%;
 	margin-right: 30px;
+
+	@media (max-width: 780px) {
+		margin-bottom: 10px;
+	}
 `;
 
 export const AboutSection = styled.div``;
