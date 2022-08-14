@@ -8,6 +8,10 @@ To install the dependencies of this project you may execute the command `yarn` o
 
 To start the server run on your terminal the command `yarn server` or `npm run server` after running the installation command
 
+## Running the project
+
+To run this project on your computer execute the command `yarn start` or `npm start` on your terminal
+
 ### Home
 
 ![](./.github/home.png)
