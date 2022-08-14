@@ -1,5 +1,8 @@
 import Modal from 'react-modal';
-import { useSelector } from 'react-redux';
+import { format } from 'date-fns';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 import Card from '../../components/Card';
 import avatar from '../../assets/avatar.jpg';
@@ -14,16 +17,48 @@ import {
 	Username,
 	Followers,
 } from './styles';
-import { format } from 'date-fns';
+import { getPostsByUserRequest } from '../../store/modules/feed/actions';
 
 export function ProfileModal({ visible, onDismiss = () => {} }) {
-	const { logged_user_is_author } = useSelector(state => state.feed);
-	const { name, username, created_at } = useSelector(
-		state => state.user.profile
-	);
+	const dispatch = useDispatch();
+
+	const { list, profile } = useSelector(state => state.user);
+
+	const { posts_by_user } = useSelector(state => state.feed);
+
 	const { following_list, followers_list } = useSelector(
 		state => state.follow
 	);
+
+	const [searchParams] = useSearchParams();
+	const [usernameUrl, setUsernameUrl] = useState();
+	const [currentProfile, setCurrentProfile] = useState(profile);
+
+	useEffect(() => {
+		const user = searchParams.get('username');
+
+		if (user) {
+			setUsernameUrl(user);
+		}
+	}, [searchParams]);
+
+	useEffect(() => {
+		setCurrentProfile(list.find(user => user.name === usernameUrl));
+	}, [usernameUrl, list]);
+
+	useEffect(() => {
+		currentProfile && dispatch(getPostsByUserRequest(currentProfile.name));
+	}, [dispatch, currentProfile]);
+
+	let followers_count = followers_list.length;
+	let following_count = following_list.length;
+
+	if (currentProfile && profile) {
+		if (currentProfile.name !== profile.name) {
+			followers_count = currentProfile.followers;
+			following_count = currentProfile.following;
+		}
+	}
 
 	return (
 		<Modal
@@ -45,22 +80,22 @@ export function ProfileModal({ visible, onDismiss = () => {} }) {
 					<Avatar src={avatar} />
 
 					<AboutSection>
-						<Name>{name}</Name>
+						<Name>{currentProfile?.name}</Name>
 
-						<Username>@{username}</Username>
+						<Username>@{currentProfile?.username}</Username>
 
 						<Followers>
-							{`${followers_list.length} followers • ${following_list.length} following`}
+							{`${followers_count} followers • ${following_count} following`}
 						</Followers>
 
 						<div>{`Joined on ${format(
-							new Date(created_at),
+							new Date(currentProfile?.created_at || null),
 							'MMMM dd, yyyy'
 						)}`}</div>
 					</AboutSection>
 				</Profile>
 
-				{logged_user_is_author?.map(post => (
+				{posts_by_user?.map(post => (
 					<Card key={post.id} post={post} />
 				))}
 			</ModalBody>

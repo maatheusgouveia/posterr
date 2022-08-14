@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaShareSquare, FaPaperPlane } from 'react-icons/fa';
@@ -32,6 +33,7 @@ import {
 } from './styles';
 
 export default function Card({ post, width }) {
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const field_name = `content-${post.id}`;
 
@@ -105,12 +107,16 @@ export default function Card({ post, width }) {
 		return commentsList;
 	}
 
-	function handleFollow(author_id) {
-		dispatch(toggleFollowRequest(author_id));
-	}
+	// function handleFollow(author_id) {
+	// 	dispatch(toggleFollowRequest(author_id));
+	// }
 
 	function handleShare() {
 		setPostModalVisible(true);
+	}
+
+	function handleProfile(username) {
+		navigate(`?page=profile&username=${username}`);
 	}
 
 	const is_repost = !!original_post?.id;
@@ -126,31 +132,31 @@ export default function Card({ post, width }) {
 	const original_author =
 		is_repost && !has_comment ? original_post_author : author;
 
-	const is_following = useMemo(
-		() => following_list.some(name => name === original_author),
-		[following_list, original_author]
-	);
+	// const is_following = useMemo(
+	// 	() => following_list.some(name => name === original_author),
+	// 	[following_list, original_author]
+	// );
 
-	const is_following_original_author = useMemo(
-		() => following_list.some(name => name === original_post_author),
-		[following_list, original_post_author]
-	);
+	// const is_following_original_author = useMemo(
+	// 	() => following_list.some(name => name === original_post_author),
+	// 	[following_list, original_post_author]
+	// );
 
 	return (
 		<Container width={width}>
 			<CardHeader>
 				{is_repost && !has_comment && <p>reposted by {author}</p>}
 
-				<UserContainer>
+				<UserContainer onClick={() => handleProfile(original_author)}>
 					<AuthorName>{original_author}</AuthorName>
 
-					{original_author !== user_name && (
+					{/* {original_author !== user_name && (
 						<FollowButton
 							onClick={() => handleFollow(original_author)}
 						>
 							{is_following ? 'unfollow' : 'follow'}
 						</FollowButton>
-					)}
+					)} */}
 				</UserContainer>
 
 				<PostDate>
@@ -164,10 +170,12 @@ export default function Card({ post, width }) {
 
 			{is_repost && has_comment && (
 				<RepostArea>
-					<UserContainer>
+					<UserContainer
+						onClick={() => handleProfile(original_post_author)}
+					>
 						<AuthorName>{original_post_author}</AuthorName>
 
-						{original_post_author !== user_name && (
+						{/* {original_post_author !== user_name && (
 							<FollowButton
 								onClick={() =>
 									handleFollow(original_post_author)
@@ -177,7 +185,7 @@ export default function Card({ post, width }) {
 									? 'unfollow'
 									: 'follow'}
 							</FollowButton>
-						)}
+						)} */}
 					</UserContainer>
 
 					<PostDate>

@@ -29,3 +29,7 @@ To run this project on your computer execute the command `yarn start` or `npm st
     http://localhost:3333/comments
 
     http://localhost:3333/following
+
+# Planning
+
+# Critique

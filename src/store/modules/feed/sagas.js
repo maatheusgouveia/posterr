@@ -8,6 +8,8 @@ import {
 	getPostsFailure,
 	setFollowingPosts,
 	setCurrentUserPosts,
+	getPostsByUserSuccess,
+	getPostsByUserFailure,
 } from './actions';
 
 export function* getPosts() {
@@ -18,6 +20,23 @@ export function* getPosts() {
 	} catch (err) {
 		toast.error('Unexpected error 🤔', { type: 'error' });
 		yield put(getPostsFailure());
+	}
+}
+
+export function* getPostsByUser({ payload }) {
+	const { name } = payload;
+
+	try {
+		const state = yield select();
+
+		const posts = state.feed.chronological.filter(
+			post => post.author === name
+		);
+
+		yield put(getPostsByUserSuccess(posts));
+	} catch (err) {
+		toast.error('Unexpected error 🤔', { type: 'error' });
+		yield put(getPostsByUserFailure());
 	}
 }
 
@@ -58,6 +77,7 @@ export function* filterCurrentUsersPosts() {
 
 export default all([
 	takeLatest('@feed/GET_POSTS_REQUEST', getPosts),
+	takeLatest('@feed/GET_POSTS_BY_USER_REQUEST', getPostsByUser),
 	takeLatest('@feed/GET_POSTS_SUCCESS', filterFollowingPosts),
 	takeLatest('@feed/GET_POSTS_SUCCESS', filterCurrentUsersPosts),
 	takeLatest('@follow/GET_FOLLOWING_LIST_REQUEST', filterFollowingPosts),

@@ -1,7 +1,6 @@
-export function getPostsRequest(data) {
+export function getPostsRequest() {
 	return {
 		type: '@feed/GET_POSTS_REQUEST',
-		payload: { data },
 	};
 }
 
@@ -36,5 +35,25 @@ export function setCurrentUserPosts(data) {
 	return {
 		type: '@feed/SET_LOGGED_USER_POSTS',
 		payload: { data },
+	};
+}
+
+export function getPostsByUserRequest(name) {
+	return {
+		type: '@feed/GET_POSTS_BY_USER_REQUEST',
+		payload: { name },
+	};
+}
+
+export function getPostsByUserSuccess(data) {
+	return {
+		type: '@feed/GET_POSTS_BY_USER_SUCCESS',
+		payload: { data },
+	};
+}
+
+export function getPostsByUserFailure() {
+	return {
+		type: '@feed/GET_POSTS_BY_USER_FAILURE',
 	};
 }
