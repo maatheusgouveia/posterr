@@ -55,7 +55,7 @@ export default function Home() {
 
 		dispatch(getPostsRequest());
 		dispatch(getCommentsRequest());
-	}, []);
+	}, [dispatch]);
 
 	const feed =
 		searchParams.get('feed') === FOLLOWING ? following : chronological;

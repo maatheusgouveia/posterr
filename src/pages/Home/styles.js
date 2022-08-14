@@ -9,7 +9,7 @@ export const Container = styled.div`
 `;
 
 export const Form = styled(FormikForm)`
-	width: 50%;
+	width: 500px;
 	margin: 30px;
 	display: flex;
 	align-items: flex-end;
@@ -25,7 +25,7 @@ export const Form = styled(FormikForm)`
 `;
 
 export const Textarea = styled.textarea`
-	width: 100%;
+	width: 500px;
 	overflow: auto;
 `;
 

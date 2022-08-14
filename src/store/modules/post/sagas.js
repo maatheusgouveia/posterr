@@ -16,6 +16,10 @@ export function* createPost({ payload }) {
 			created_at: new Date().toISOString(),
 		};
 
+		if (payload.data.original_post) {
+			data.original_post = payload.data.original_post;
+		}
+
 		const response = yield call(api.post, 'posts', data);
 
 		yield put(createPostSuccess(response.data));

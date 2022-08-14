@@ -2,13 +2,14 @@ import * as Yup from 'yup';
 import { Formik } from 'formik';
 import { useMemo, useState } from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import { FaShareSquare, FaPaperPlane } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
+import { FaShareSquare, FaPaperPlane } from 'react-icons/fa';
 
 import { toggleFollowRequest } from '../../store/modules/follow/actions';
 import { createCommentRequest } from '../../store/modules/comment/actions';
 
 import Comment from '../Comment';
+import PostModal from '../PostModal';
 
 import {
 	Form,
@@ -39,6 +40,7 @@ export default function Card({ post, width }) {
 	const { following_list } = useSelector(state => state.follow);
 
 	const [commentsVisible, setCommentsVisible] = useState(false);
+	const [postModalVisible, setPostModalVisible] = useState(false);
 
 	const comments = threads[post.id] || [];
 
@@ -107,7 +109,9 @@ export default function Card({ post, width }) {
 		dispatch(toggleFollowRequest(author_id));
 	}
 
-	function handleShare() {}
+	function handleShare() {
+		setPostModalVisible(true);
+	}
 
 	const is_repost = !!original_post?.id;
 
@@ -115,16 +119,14 @@ export default function Card({ post, width }) {
 
 	let main_content = content;
 
-	if (is_repost && has_comment) {
-		main_content = content;
-	}
-
 	if (is_repost && !has_comment) {
 		main_content = original_post_content;
 	}
 
 	const original_author =
 		is_repost && !has_comment ? original_post_author : author;
+
+	console.log(original_author);
 
 	const is_following = useMemo(
 		() => following_list.some(name => name === original_author),
@@ -218,6 +220,12 @@ export default function Card({ post, width }) {
 
 				<Comments>{renderComments(commentsVisible)}</Comments>
 			</CardFooter>
+
+			<PostModal
+				isOpen={postModalVisible}
+				onDismiss={() => setPostModalVisible(false)}
+				post={!has_comment && is_repost ? original_post : post}
+			/>
 		</Container>
 	);
 }

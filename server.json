@@ -41,69 +41,94 @@
       "created_at": "2022-08-12T04:18:38.387Z"
     },
     {
-      "content": "new Post",
+      "content": "Um post",
       "author": "Matheus Gouveia",
-      "created_at": "2022-08-03T04:18:38.387Z",
+      "created_at": "2022-08-14T01:55:10.458Z",
+      "id": 4
+    },
+    {
+      "content": "",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-14T01:55:41.193Z",
+      "original_post": {
+        "id": 1,
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "author": "John Doe",
+        "created_at": "2022-08-12T04:18:38.387Z"
+      },
+      "id": 5
+    },
+    {
+      "content": "Nice",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-14T01:55:55.952Z",
+      "original_post": {
+        "id": 2,
+        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "author": "Fatima Voestaa",
+        "created_at": "2022-07-19T04:18:38.387Z"
+      },
       "id": 6
     },
     {
-      "content": "opa\n",
+      "content": "",
       "author": "Matheus Gouveia",
-      "created_at": "2022-08-04T19:10:36.211Z",
+      "created_at": "2022-08-14T02:02:33.105Z",
+      "original_post": {
+        "content": "Nice",
+        "author": "Matheus Gouveia",
+        "created_at": "2022-08-14T01:55:55.952Z",
+        "original_post": {
+          "id": 2,
+          "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+          "author": "Fatima Voestaa",
+          "created_at": "2022-07-19T04:18:38.387Z"
+        },
+        "id": 6
+      },
       "id": 7
     },
     {
-      "id": 8,
+      "content": "Another post",
       "author": "Matheus Gouveia",
-      "content": "",
-      "created_at": "2022-08-12T04:22:33.387Z",
-      "original_post": {
-        "id": 1,
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "author": "John Doe",
-        "created_at": "2022-08-12T04:18:38.387Z"
-      }
-    },
-    {
-      "id": 9,
-      "author": "Matheus Gouveia",
-      "content": "I totally agree",
-      "created_at": "2022-08-12T04:23:38.387Z",
-      "original_post": {
-        "id": 1,
-        "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-        "author": "John Doe",
-        "created_at": "2022-08-12T04:18:38.387Z"
-      }
+      "created_at": "2022-08-14T02:02:43.618Z",
+      "id": 8
     }
   ],
   "comments": [
     {
-      "post_id": 7,
+      "post_id": 1,
+      "content": "comentário",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-14T01:55:31.209Z",
+      "id": 1
+    },
+    {
+      "post_id": 6,
       "content": "opa",
       "author": "Matheus Gouveia",
-      "created_at": "2022-08-04T19:10:42.947Z",
-      "id": 1
+      "created_at": "2022-08-14T02:01:53.474Z",
+      "id": 2
     }
   ],
   "following": [
     {
       "user_id": "Matheus Gouveia",
-      "following": "John Doe",
-      "created_at": "2022-08-13T03:09:59.438Z",
-      "id": 1
+      "following": "Glaphyra Maiken",
+      "created_at": "2022-08-14T01:54:54.753Z",
+      "id": 4
     },
     {
       "user_id": "Matheus Gouveia",
-      "following": "Glaphyra Maiken",
-      "created_at": "2022-08-13T03:20:12.160Z",
-      "id": 2
+      "following": "John Doe",
+      "created_at": "2022-08-14T01:55:00.278Z",
+      "id": 5
     },
     {
       "user_id": "Matheus Gouveia",
       "following": "Fatima Voestaa",
-      "created_at": "2022-08-13T03:20:17.094Z",
-      "id": 3
+      "created_at": "2022-08-14T01:56:31.592Z",
+      "id": 6
     }
   ]
 }

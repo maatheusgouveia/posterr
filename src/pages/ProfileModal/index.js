@@ -16,9 +16,11 @@ import {
 } from './styles';
 
 export function ProfileModal({ visible, onDismiss = () => {} }) {
-	const { name, username } = useSelector(state => state.user.profile);
 	const { logged_user_is_author } = useSelector(state => state.feed);
-	const { profile } = useSelector(state => state.user);
+	const { name, username } = useSelector(state => state.user.profile);
+	const { following_list, followers_list } = useSelector(
+		state => state.follow
+	);
 
 	return (
 		<Modal
@@ -42,12 +44,14 @@ export function ProfileModal({ visible, onDismiss = () => {} }) {
 					<AboutSection>
 						<Name>{name}</Name>
 						<Username>@{username}</Username>
-						<Followers>123 followers</Followers>
+						<Followers>
+							{`${followers_list.length} followers • ${following_list.length} following`}
+						</Followers>
 					</AboutSection>
 				</Profile>
 
 				{logged_user_is_author?.map(post => (
-					<Card key={post.id} post={post} width={500} />
+					<Card key={post.id} post={post} />
 				))}
 			</ModalBody>
 		</Modal>
