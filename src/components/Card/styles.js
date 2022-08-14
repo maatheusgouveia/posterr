@@ -13,6 +13,7 @@ export const Container = styled.div`
 
 export const UserContainer = styled.div`
 	display: flex;
+	cursor: pointer;
 	align-items: center;
 `;
 

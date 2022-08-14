@@ -30,6 +30,8 @@ export const ModalBody = styled.div`
 
 export const Form = styled(FormikForm)`
 	display: flex;
+	width: 500px;
+	max-width: 100%;
 	align-items: center;
 	flex-direction: column;
 	justify-content: center;
@@ -52,10 +54,10 @@ export const SubmitButton = styled.button`
 
 export const PostContent = styled.div`
 	width: 500px;
-	max-width: 80%;
-	border: 1px solid #fff;
-	border-radius: 5px;
 	padding: 5px;
+	max-width: 80%;
+	border-radius: 5px;
+	border: 1px solid #fff;
 `;
 
 export const TextareaContainer = styled.div`
