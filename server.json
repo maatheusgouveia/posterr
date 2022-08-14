@@ -93,6 +93,36 @@
       "author": "Matheus Gouveia",
       "created_at": "2022-08-14T02:02:43.618Z",
       "id": 8
+    },
+    {
+      "content": "test",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-14T03:23:11.064Z",
+      "id": 9
+    },
+    {
+      "content": "test",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-14T03:23:21.622Z",
+      "id": 10
+    },
+    {
+      "content": "test",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-14T03:23:27.673Z",
+      "id": 11
+    },
+    {
+      "content": "test",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-14T03:25:06.870Z",
+      "id": 12
+    },
+    {
+      "content": "test",
+      "author": "Matheus Gouveia",
+      "created_at": "2022-08-14T03:25:12.973Z",
+      "id": 13
     }
   ],
   "comments": [
@@ -112,6 +142,24 @@
     }
   ],
   "following": [
+    {
+      "user_id": "Glaphyra Maiken",
+      "following": "Matheus Gouveia",
+      "created_at": "2022-08-14T01:54:54.753Z",
+      "id": 1
+    },
+    {
+      "user_id": "John Doe",
+      "following": "Matheus Gouveia",
+      "created_at": "2022-08-14T01:55:00.278Z",
+      "id": 2
+    },
+    {
+      "user_id": "Fatima Voestaa",
+      "following": "Matheus Gouveia",
+      "created_at": "2022-08-14T02:46:22.759Z",
+      "id": 3
+    },
     {
       "user_id": "Matheus Gouveia",
       "following": "Glaphyra Maiken",

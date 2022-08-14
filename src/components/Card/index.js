@@ -126,8 +126,6 @@ export default function Card({ post, width }) {
 	const original_author =
 		is_repost && !has_comment ? original_post_author : author;
 
-	console.log(original_author);
-
 	const is_following = useMemo(
 		() => following_list.some(name => name === original_author),
 		[following_list, original_author]

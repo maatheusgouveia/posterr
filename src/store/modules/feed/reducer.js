@@ -53,6 +53,10 @@ export default function feed(state = INITIAL_STATE, action) {
 					action.payload.data,
 					...draft.chronological,
 				];
+				draft.logged_user_is_author = [
+					action.payload.data,
+					...draft.logged_user_is_author,
+				];
 				break;
 			}
 			default:
