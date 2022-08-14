@@ -26,7 +26,6 @@ export const ModalBody = styled.div`
 `;
 
 export const Profile = styled.div`
-	width: 50%;
 	display: flex;
 	justify-content: flex-start;
 `;
@@ -53,4 +52,19 @@ export const Username = styled.h2`
 export const Followers = styled.p`
 	margin-top: 15px;
 	margin-bottom: 3px;
+`;
+
+export const FollowButton = styled.button`
+	border: none;
+	background: none;
+	color: #fff;
+	margin-bottom: 3px;
+
+	&:hover {
+		font-weight: bold;
+	}
+`;
+
+export const UserNameSection = styled.div`
+	display: flex;
 `;

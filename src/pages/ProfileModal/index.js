@@ -1,11 +1,13 @@
 import Modal from 'react-modal';
 import { format } from 'date-fns';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
 import Card from '../../components/Card';
 import avatar from '../../assets/avatar.jpg';
+import { getPostsByUserRequest } from '../../store/modules/feed/actions';
+import { toggleFollowRequest } from '../../store/modules/follow/actions';
 
 import {
 	ModalHeader,
@@ -16,8 +18,9 @@ import {
 	Name,
 	Username,
 	Followers,
+	FollowButton,
+	UserNameSection,
 } from './styles';
-import { getPostsByUserRequest } from '../../store/modules/feed/actions';
 
 export function ProfileModal({ visible, onDismiss = () => {} }) {
 	const dispatch = useDispatch();
@@ -34,6 +37,10 @@ export function ProfileModal({ visible, onDismiss = () => {} }) {
 	const [usernameUrl, setUsernameUrl] = useState();
 	const [currentProfile, setCurrentProfile] = useState(profile);
 
+	function handleFollow(author_id) {
+		dispatch(toggleFollowRequest(author_id));
+	}
+
 	useEffect(() => {
 		const user = searchParams.get('username');
 
@@ -49,6 +56,16 @@ export function ProfileModal({ visible, onDismiss = () => {} }) {
 	useEffect(() => {
 		currentProfile && dispatch(getPostsByUserRequest(currentProfile.name));
 	}, [dispatch, currentProfile]);
+
+	const is_following = useMemo(
+		() =>
+			following_list.some(name => {
+				if (!currentProfile) return false;
+
+				return name === currentProfile.name;
+			}),
+		[following_list, currentProfile]
+	);
 
 	let followers_count = followers_list.length;
 	let following_count = following_list.length;
@@ -80,7 +97,19 @@ export function ProfileModal({ visible, onDismiss = () => {} }) {
 					<Avatar src={avatar} />
 
 					<AboutSection>
-						<Name>{currentProfile?.name}</Name>
+						<UserNameSection>
+							<Name>{currentProfile?.name}</Name>
+
+							{currentProfile?.name !== profile?.name && (
+								<FollowButton
+									onClick={() =>
+										handleFollow(currentProfile?.name)
+									}
+								>
+									{is_following ? 'unfollow' : 'follow'}
+								</FollowButton>
+							)}
+						</UserNameSection>
 
 						<Username>@{currentProfile?.username}</Username>
 
