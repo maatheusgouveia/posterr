@@ -133,6 +133,11 @@ export default function Card({ post, width }) {
 		[following_list, original_author]
 	);
 
+	const is_following_original_author = useMemo(
+		() => following_list.some(name => name === original_post_author),
+		[following_list, original_post_author]
+	);
+
 	return (
 		<Container width={width}>
 			<CardHeader>
@@ -170,7 +175,9 @@ export default function Card({ post, width }) {
 									handleFollow(original_post_author)
 								}
 							>
-								{is_following ? 'unfollow' : 'follow'}
+								{is_following_original_author
+									? 'unfollow'
+									: 'follow'}
 							</FollowButton>
 						)}
 					</UserContainer>
