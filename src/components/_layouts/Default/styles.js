@@ -18,4 +18,8 @@ export const Content = styled.div`
 	display: grid;
 	flex-direction: row;
 	grid-template-columns: 20% 1fr;
+
+	@media (max-width: 780px) {
+		grid-template-columns: 1fr;
+	}
 `;

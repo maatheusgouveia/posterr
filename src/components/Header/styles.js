@@ -21,11 +21,6 @@ export const Content = styled.div`
 		margin-left: 30px;
 		width: 300px;
 	}
-
-	@media (max-width: 780px) {
-		flex-direction: column;
-		align-items: center;
-	}
 `;
 
 export const LogoContainer = styled.div`
@@ -42,7 +37,11 @@ export const LogoContainer = styled.div`
 
 		@media (max-width: 780px) {
 			justify-content: center;
-			width: 100%;
+			max-width: 50%;
+
+			h1 {
+				display: none;
+			}
 		}
 	}
 
@@ -56,8 +55,8 @@ export const ToggleFeed = styled.div`
 	justify-content: space-around;
 	margin-left: 50px;
 	border-radius: 5px;
-	/* border: 1px solid #fff; */
-	width: 200px;
+	min-width: 200px;
+	/* min-width: 50%; */
 `;
 
 export const ToggleFeedButton = styled.button`

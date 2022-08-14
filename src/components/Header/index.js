@@ -46,11 +46,6 @@ export default function Header() {
 					</span>
 				</LogoContainer>
 
-				<input
-					type="search"
-					placeholder="Find out what others are talking about"
-				/>
-
 				<ToggleFeed>
 					<ToggleFeedButton
 						selected={feedType === FOLLOWING}

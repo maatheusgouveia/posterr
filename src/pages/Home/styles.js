@@ -27,6 +27,7 @@ export const Form = styled(FormikForm)`
 
 export const Textarea = styled.textarea`
 	width: 500px;
+	max-width: 100%;
 	overflow: auto;
 `;
 

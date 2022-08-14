@@ -3,6 +3,10 @@ import styled from 'styled-components';
 export const Container = styled.div``;
 
 export const List = styled.ul`
+	@media (max-width: 780px) {
+		display: none;
+	}
+
 	color: #fff;
 	padding-right: 10px;
 
