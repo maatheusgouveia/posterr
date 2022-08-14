@@ -51,5 +51,6 @@ export const Username = styled.h2`
 `;
 
 export const Followers = styled.p`
-	margin-top: 5px;
+	margin-top: 15px;
+	margin-bottom: 3px;
 `;

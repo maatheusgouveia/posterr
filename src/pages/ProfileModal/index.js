@@ -14,10 +14,13 @@ import {
 	Username,
 	Followers,
 } from './styles';
+import { format } from 'date-fns';
 
 export function ProfileModal({ visible, onDismiss = () => {} }) {
 	const { logged_user_is_author } = useSelector(state => state.feed);
-	const { name, username } = useSelector(state => state.user.profile);
+	const { name, username, created_at } = useSelector(
+		state => state.user.profile
+	);
 	const { following_list, followers_list } = useSelector(
 		state => state.follow
 	);
@@ -43,10 +46,17 @@ export function ProfileModal({ visible, onDismiss = () => {} }) {
 
 					<AboutSection>
 						<Name>{name}</Name>
+
 						<Username>@{username}</Username>
+
 						<Followers>
 							{`${followers_list.length} followers • ${following_list.length} following`}
 						</Followers>
+
+						<div>{`Joined on ${format(
+							new Date(created_at),
+							'MMMM dd, yyyy'
+						)}`}</div>
 					</AboutSection>
 				</Profile>
 

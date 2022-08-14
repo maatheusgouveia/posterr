@@ -5,6 +5,7 @@ const INITIAL_STATE = {
 		id: 1,
 		name: 'Matheus Gouveia',
 		username: 'maatheusgouveia',
+		created_at: '2022-05-10T04:18:38.387Z',
 	},
 	following_list: [],
 	following_count: 0,
