@@ -6,6 +6,7 @@ export const Container = styled.div`
 	margin: 30px;
 	padding: 15px;
 	width: 500px;
+	max-width: 80%;
 	border-radius: 5px;
 	background-color: #242526;
 `;
@@ -13,17 +14,6 @@ export const Container = styled.div`
 export const UserContainer = styled.div`
 	display: flex;
 	align-items: center;
-`;
-
-export const FollowButton = styled.button`
-	border: none;
-	background: none;
-	color: #fff;
-	margin-bottom: 3px;
-
-	&:hover {
-		font-weight: bold;
-	}
 `;
 
 export const AuthorName = styled.p`

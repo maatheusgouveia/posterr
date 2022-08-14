@@ -10,6 +10,7 @@ export const Container = styled.div`
 
 export const Form = styled(FormikForm)`
 	width: 500px;
+	max-width: 80%;
 	margin: 30px;
 	display: flex;
 	align-items: flex-end;

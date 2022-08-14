@@ -1,12 +1,11 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaShareSquare, FaPaperPlane } from 'react-icons/fa';
 
-import { toggleFollowRequest } from '../../store/modules/follow/actions';
 import { createCommentRequest } from '../../store/modules/comment/actions';
 
 import Comment from '../Comment';
@@ -21,7 +20,6 @@ import {
 	PostDate,
 	AuthorName,
 	UserContainer,
-	FollowButton,
 	ActionArea,
 	Textarea,
 	SubmitButton,
@@ -38,8 +36,6 @@ export default function Card({ post, width }) {
 	const field_name = `content-${post.id}`;
 
 	const { threads } = useSelector(state => state.comment);
-	const { name: user_name } = useSelector(state => state.user.profile);
-	const { following_list } = useSelector(state => state.follow);
 
 	const [commentsVisible, setCommentsVisible] = useState(false);
 	const [postModalVisible, setPostModalVisible] = useState(false);
@@ -107,10 +103,6 @@ export default function Card({ post, width }) {
 		return commentsList;
 	}
 
-	// function handleFollow(author_id) {
-	// 	dispatch(toggleFollowRequest(author_id));
-	// }
-
 	function handleShare() {
 		setPostModalVisible(true);
 	}
@@ -132,16 +124,6 @@ export default function Card({ post, width }) {
 	const original_author =
 		is_repost && !has_comment ? original_post_author : author;
 
-	// const is_following = useMemo(
-	// 	() => following_list.some(name => name === original_author),
-	// 	[following_list, original_author]
-	// );
-
-	// const is_following_original_author = useMemo(
-	// 	() => following_list.some(name => name === original_post_author),
-	// 	[following_list, original_post_author]
-	// );
-
 	return (
 		<Container width={width}>
 			<CardHeader>
@@ -149,14 +131,6 @@ export default function Card({ post, width }) {
 
 				<UserContainer onClick={() => handleProfile(original_author)}>
 					<AuthorName>{original_author}</AuthorName>
-
-					{/* {original_author !== user_name && (
-						<FollowButton
-							onClick={() => handleFollow(original_author)}
-						>
-							{is_following ? 'unfollow' : 'follow'}
-						</FollowButton>
-					)} */}
 				</UserContainer>
 
 				<PostDate>
@@ -174,18 +148,6 @@ export default function Card({ post, width }) {
 						onClick={() => handleProfile(original_post_author)}
 					>
 						<AuthorName>{original_post_author}</AuthorName>
-
-						{/* {original_post_author !== user_name && (
-							<FollowButton
-								onClick={() =>
-									handleFollow(original_post_author)
-								}
-							>
-								{is_following_original_author
-									? 'unfollow'
-									: 'follow'}
-							</FollowButton>
-						)} */}
 					</UserContainer>
 
 					<PostDate>

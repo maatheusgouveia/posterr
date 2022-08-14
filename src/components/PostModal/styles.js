@@ -52,6 +52,7 @@ export const SubmitButton = styled.button`
 
 export const PostContent = styled.div`
 	width: 500px;
+	max-width: 80%;
 	border: 1px solid #fff;
 	border-radius: 5px;
 	padding: 5px;
@@ -59,6 +60,7 @@ export const PostContent = styled.div`
 
 export const TextareaContainer = styled.div`
 	width: 500px;
+	max-width: 80%;
 	display: flex;
 	align-items: center;
 	margin-bottom: 20px;
