@@ -50,6 +50,12 @@ To run this project on your computer execute the command `yarn start` or `npm st
 
     - Will it be possible to tag just one user or multiple ones?
 
+    I believe that a new column should be added in the posts table referencing the mentions made in it, it can reference a new mentions table that can contain one or more user references according to what is decided.
+
+    I would start development from the front by creating the new feed, creating a new list similar to the existing one, creating a component that would appear above the text field when the user types the “@” and showing the list with the corresponding results. After that, I would create the mention module in the project's redux store with all the necessary actions and sagas, initially for listing, adding and removing users.
+
+    In the “feed” module I would add the listing of filtered posts with mentions to the user, this listing would be updated whenever the user switches to this new feed
+
 # Critique
 
     - Add some i18n lib for internationalization and add support to more languages.
