@@ -36,6 +36,20 @@ To run this project on your computer execute the command `yarn start` or `npm st
 
 # Planning
 
+    - Is there a prototype I can consult?
+
+    - What kind of notifications should the user receive?
+
+    - Will the user be able to opt out of receiving these notifications if they prefer?
+
+    - Will there be any system to block a user?
+
+    - Will this new post reflect the original post in any way?
+
+    - When typing, should the results contain only the people the user follows or all the results found?
+
+    - Will it be possible to tag just one user or multiple ones?
+
 # Critique
 
     - Add some i18n lib for internationalization and add support to more languages.
@@ -55,3 +69,13 @@ To run this project on your computer execute the command `yarn start` or `npm st
     - In browser notification when some user reposts your content or starts to follow your account.
 
     - Use typescript for type support and get errors faster as typescript validates code on transpilation. It should make code management easier and improve team productivity.
+
+    - Instead of making multiple calls in the api, I believe that posts and comments could already come in the same call following the sequelize pattern. I should use a limit and bring other comments on demand as the user request it.
+
+    {
+    	id: '',
+    	content: '',
+    	author: '',
+    	comments: [],
+    	...
+    }
