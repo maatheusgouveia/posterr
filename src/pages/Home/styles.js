@@ -17,6 +17,7 @@ export const Form = styled(FormikForm)`
 	flex-direction: column;
 
 	button {
+		font-weight: bold;
 		color: #fff;
 		width: 100px;
 		margin-top: 5px;

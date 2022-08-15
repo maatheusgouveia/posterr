@@ -82,7 +82,7 @@ export default function Home() {
 							{values.content.length} of 777 characters
 						</CharCount>
 
-						<button type="submit">Comment</button>
+						<button type="submit">Send</button>
 					</Form>
 				)}
 			</Formik>

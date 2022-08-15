@@ -74,8 +74,15 @@ export default function PostModal({ post = {}, isOpen, onDismiss = () => {} }) {
 									placeholder="Say something cool about this post"
 								/>
 
-								<SubmitButton type="submit">
-									<FaPaperPlane />
+								<SubmitButton
+									round={values.repost_content}
+									type="submit"
+								>
+									{values.repost_content ? (
+										<FaPaperPlane />
+									) : (
+										'Repost withowt a comment'
+									)}
 								</SubmitButton>
 							</TextareaContainer>
 

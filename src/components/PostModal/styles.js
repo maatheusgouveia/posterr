@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Form as FormikForm } from 'formik';
 
 export const ModalHeader = styled.div`
@@ -44,10 +44,18 @@ export const Textarea = styled.textarea`
 `;
 
 export const SubmitButton = styled.button`
-	width: 2.5em;
-	height: 2.5em;
+	${({ round }) =>
+		round
+			? css`
+					width: 2.5em;
+					height: 2.5em;
+					border-radius: 50%;
+			  `
+			: ''}
+
+	font-weight: bold;
+	color: #fff;
 	margin-left: 10px;
-	border-radius: 50%;
 	background-color: #1d9bf0;
 	border: 1px solid #1d9bf0;
 `;
