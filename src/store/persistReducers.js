@@ -6,7 +6,7 @@ const persistReducers = reducers => {
 		{
 			key: 'posterr',
 			storage,
-			whitelist: ['auth', 'user', 'feed'],
+			whitelist: ['auth', 'comment', 'feed', 'follow', 'post', 'user'],
 		},
 		reducers
 	);
